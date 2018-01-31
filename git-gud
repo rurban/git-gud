@@ -105,7 +105,7 @@ else
   echo "> OK: Body includes comment ($LINES_COUNTER > 0)"
 fi
 
-# Check: "Signed-off-by: ..." line should exists
+# if "Signed-off-by: ..." exists it needs to be valid
 if [ ${#SIGNED_OFF_LINE} -ne "0" ]; then
   echo "> OK: 'Signed-off-by' line is not empty (${#SIGNED_OFF_LINE} > 0)"
   # Check: "Signed-off-by: Author Valid Name <author@valid.email>"

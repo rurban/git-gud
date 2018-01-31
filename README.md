@@ -13,9 +13,9 @@ A simple git commit checker. I often use a commit message template I created a w
 - [x] Commit subject message uses a maximum of **50 characters**
 - [x] Commit body message is not empty
 - [x] Commit body message lines use a maximum of **72 characters**
-- [x] Commit body message has lines with comments (i.e. not "Signed-off-by: ...")
-- [x] Commit body message has a "Signed-off-by: ..." line (`Signed-off-by: Antonio Ossa <aaossa@uc.cl>`)
-- [x] Commit signature is "good"
+- [x] Commit body message is not empty, ignoring "Signed-off-by: ...", ...
+- [x] If "Signed-off-by: " exists, it must be valid (`Signed-off-by: Antonio Ossa <aaossa@uc.cl>`)
+- [x] Commit signature is "good" or absent
 
 ### Template
 

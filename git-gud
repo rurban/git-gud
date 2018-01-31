@@ -104,21 +104,20 @@ if [ "$LINES_COUNTER" -eq "0" ]; then
 else
   echo "> OK: Body includes comment ($LINES_COUNTER > 0)"
 fi
+
 # Check: "Signed-off-by: ..." line should exists
 if [ ${#SIGNED_OFF_LINE} -ne "0" ]; then
   echo "> OK: 'Signed-off-by' line is not empty (${#SIGNED_OFF_LINE} > 0)"
-else
-  echo "> ERROR: 'Signed-off-by' line is empty (${#SIGNED_OFF_LINE} == 0)"
-fi
-# Check: "Signed-off-by: Author Valid Name <author@valid.email>"
-if validateSignedOffInformation "$SIGNED_OFF_LINE" "$AUTHOR_NAME" "$AUTHOR_EMAIL"; then
-  echo "> OK: 'Signed-off-by' line has author information"
-else
-  echo "> ERROR: 'Signed-off-by' line does not have author information"
+  # Check: "Signed-off-by: Author Valid Name <author@valid.email>"
+  if validateSignedOffInformation "$SIGNED_OFF_LINE" "$AUTHOR_NAME" "$AUTHOR_EMAIL"; then
+      echo "> OK: 'Signed-off-by' line has author information"
+  else
+      echo "> ERROR: 'Signed-off-by' line does not have author information"
+  fi
 fi
 
 COMMIT_SIGNATURE=`git log -n 1 --format="%G?"`
-# Check: Commit must have a good (valid) signature
-if [ "$COMMIT_SIGNATURE" != "G" ]; then
+# Check: Commit must have a good (valid) or no signature
+if [ "$COMMIT_SIGNATURE" != "G" -a "$COMMIT_SIGNATURE" != "N" ]; then
   echo "> WARNING: Signature is not valid (Status: $COMMIT_SIGNATURE)"
 fi
